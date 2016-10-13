@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">DoAnMobile</string>
+
+    <string name="simple_login">Login</string>
+    <string name="simple_listProduct">List Product</string>
+    <string name="simple_catagory">Catagory : </string>
+    <string name="simple_addProduct">Add Product</string>
+    <string name="simple_addCategory">Add Category</string>
+    <string name="simple_detailproduct">Detail Product</string>
+
+    <string name="simple_logout">Logout</string>
+    <string name="simple_logoutMessage">Are you sure you want to exit?</string>
+    <string name="simple_about">About</string>
+    <string name="simple_register">Register</string>
+    <string name="simple_yes">Yes</string>
+    <string name="simple_no">No</string>
+
+    <string name="simple_username">Username</string>
+    <string name="simple_password">Password</string>
+
+    <string name="simple_codeProduct">Product Code</string>
+    <string name="simple_nameProduct">Product Name</string>
+    <string name="simple_costProduct">Cost (VND)</string>
+    <string name="simple_volumetric"> Volumetric (ml)</string>
+    <string name="simple_production"> Production</string>
+    <string name="simple_add">Add</string>
+
+    <string name="simple_edit">Edit</string>
+    <string name="simple_del">Del</string>
+    <string name="simple_exit">Exit</string>
+
+    <string name="simple_idCategory">ID Category</string>
+    <string name="simple_nameCategory">Name Category</string>
+    <string name="simple_listCategory">List Category :</string>
+
+    <string name="simple_messErrorSpace">Please enter a full</string>
+    <string name="simple_messAddSuccess">Add Success</string>
+    <string name="simple_messDelSuccess">Del Success</string>
+    <string name="simple_messEditSuccess">Edit Success</string>
+    <string name="simple_messErrorChoose">Please choose an catagory</string>
+
+
+</resources>

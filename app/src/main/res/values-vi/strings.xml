@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DoAnMobile</string>
+    <string name="simple_login">Đăng nhập</string>
+    <string name="simple_listProduct">D.sách sản phẩm</string>
+    <string name="simple_catagory">Danh mục : </string>
+    <string name="simple_addProduct">Thêm sản phẩm</string>
+    <string name="simple_addCategory">Thêm thể loại</string>
+    <string name="simple_detailproduct">Chi tiết sản phẩm</string>
+
+    <string name="simple_logout">Đăng xuất</string>
+    <string name="simple_logoutMessage">Bạn có chắc bạn muốn thoát?</string>
+    <string name="simple_about">Thông tin</string>
+    <string name="simple_register">Đăng ký</string>
+    <string name="simple_yes">Đồng ý</string>
+    <string name="simple_no">Không</string>
+
+    <string name="simple_username">Tên đăng nhập</string>
+    <string name="simple_password">Mật khẩu</string>
+
+    <string name="simple_codeProduct">Mã sản phẩm</string>
+    <string name="simple_nameProduct">Tên sản phẩm</string>
+    <string name="simple_costProduct">Giá (VND)</string>
+    <string name="simple_volumetric">Thể tích thực (ml)</string>
+    <string name="simple_production">Nhà sản xuất</string>
+    <string name="simple_add">Thêm</string>
+
+    <string name="simple_edit">Sửa</string>
+    <string name="simple_del">xoá</string>
+    <string name="simple_exit">Thoát</string>
+
+    <string name="simple_idCategory">Mã thể loại</string>
+    <string name="simple_nameCategory">Tên thể loại</string>
+    <string name="simple_listCategory">Danh sách thể loại :</string>
+
+    <string name="simple_messErrorSpace">Vui lòng nhập đầy đủ</string>
+    <string name="simple_messAddSuccess">Thêm thành công</string>
+    <string name="simple_messDelSuccess">Xóa thành công</string>
+    <string name="simple_messEditSuccess">Sửa thành công</string>
+    <string name="simple_messErrorChoose">Chọn thể loại cần xoá</string>
+
+</resources>

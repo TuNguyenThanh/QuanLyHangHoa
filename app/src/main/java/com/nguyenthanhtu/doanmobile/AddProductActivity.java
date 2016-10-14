@@ -28,11 +28,13 @@ public class AddProductActivity extends AppCompatActivity  {
     ImageView imgAddProduct;
     Button btnAdd;
     private ArrayAdapter<Category> adapterCategory;
+    private String idProduct;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         addControls();
         addEvents();
@@ -47,8 +49,16 @@ public class AddProductActivity extends AppCompatActivity  {
         });
     }
 
+    @Override
+    public boolean onSupportNavigateUp(){
+        //Toast.makeText(AddProductActivity.this, "back", Toast.LENGTH_SHORT).show();
+        Data.generator.moveBack();
+        finish();
+        return true;
+    }
+
     private void addProduct() {
-        String idProduct = "SP9";//txtId.getText().toString();
+        String idProduct = this.idProduct; //"SP9";//txtId.getText().toString();
         String name = edtAddName.getText().toString();
         String production = edtAddProduction.getText().toString();
         if (name.trim().length() > 0 && production.trim().length() > 0 && edtAddCost.getText().toString().trim().length() > 0 && edtAddVolumetric.getText().toString().trim().length() > 0 && spinnerCategory.getSelectedItem() != null){
@@ -71,7 +81,7 @@ public class AddProductActivity extends AppCompatActivity  {
     }
 
     private void addControls() {
-        txtId = (TextView) findViewById(R.id.txtId);
+        txtId = (TextView) findViewById(R.id.txtAddId);
         edtAddName = (EditText) findViewById(R.id.edtAddName);
         edtAddCost = (EditText) findViewById(R.id.edtAddCost);
         edtAddVolumetric = (EditText) findViewById(R.id.edtAddVolumetric);
@@ -82,7 +92,10 @@ public class AddProductActivity extends AppCompatActivity  {
 
         //set id product
         //String.valueOf(AddProductActivity.this.getString(R.string.simple_codeProduct))
-        //txtId.setText(String.valueOf(AddProductActivity.this.getString(R.string.simple_codeProduct)));
+
+        //create id product
+        this.idProduct = Data.generator.nextId();
+        txtId.setText(this.idProduct);
 
         adapterCategory = new ArrayAdapter<Category>(AddProductActivity.this, android.R.layout.simple_list_item_1, Data.listDataCategory);
         adapterCategory.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);

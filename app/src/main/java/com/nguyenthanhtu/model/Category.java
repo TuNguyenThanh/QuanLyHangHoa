@@ -40,15 +40,16 @@ public class Category implements Serializable {
 
         Category category = (Category) o;
 
-        if (!categoryId.equals(category.categoryId)) return false;
-        return categoryName.equals(category.categoryName);
+        if (categoryId != null ? !categoryId.equals(category.categoryId) : category.categoryId != null)
+            return false;
+        return categoryName != null ? categoryName.equals(category.categoryName) : category.categoryName == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = categoryId.hashCode();
-        result = 31 * result + categoryName.hashCode();
+        int result = categoryId != null ? categoryId.hashCode() : 0;
+        result = 31 * result + (categoryName != null ? categoryName.hashCode() : 0);
         return result;
     }
 

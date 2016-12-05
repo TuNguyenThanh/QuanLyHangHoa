@@ -14,11 +14,13 @@
         android:textSize="35sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/edtAddIdCategory"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/simple_idCategory" />
+        android:layout_height="30dp"
+        android:textSize="18dp"
+        android:paddingLeft="5dp"
+        android:id="@+id/txtAddIdCategory"
+        android:text="@string/simple_idCategory"/>
 
     <EditText
         android:id="@+id/edtAddNameCategory"

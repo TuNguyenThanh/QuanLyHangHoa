@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Ứng dụng quản lý bán hàng"
+        android:text="@string/simple_nameApp"
         android:textSize="18dp"
         android:textStyle="bold"
         android:textColor="#000"/>
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Tác giả:"
+        android:text="@string/simple_author"
         android:textSize="18dp"
         android:textStyle="bold"
         android:textColor="#000"/>

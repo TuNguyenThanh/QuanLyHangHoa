@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">DoAnMobile</string>
+    <string name="simple_stu">Saigon Technology University</string>
 
     <string name="simple_login">Login</string>
+    <string name="simple_loginError">Wrong account</string>
     <string name="simple_listProduct">List Product</string>
     <string name="simple_catagory">Catagory : </string>
     <string name="simple_addProduct">Add Product</string>
@@ -20,7 +22,7 @@
 
     <string name="simple_codeProduct">Product Code</string>
     <string name="simple_nameProduct">Product Name</string>
-    <string name="simple_costProduct">Cost (VND)</string>
+    <string name="simple_costProduct">Price (VND)</string>
     <string name="simple_volumetric"> Volumetric (ml)</string>
     <string name="simple_production"> Production</string>
     <string name="simple_add">Add</string>
@@ -38,6 +40,23 @@
     <string name="simple_messDelSuccess">Del Success</string>
     <string name="simple_messEditSuccess">Edit Success</string>
     <string name="simple_messErrorChoose">Please choose an catagory</string>
+
+    <string name="simple_alertChooseImage">Please select image</string>
+    <string name="simple_chooseImage">Choose image</string>
+    <string name="simple_photo">Photo</string>
+    <string name="simple_camera">Camera</string>
+    <string name="simple_removeMessage">Are you sure you want to remove?</string>
+    <string name="simple_removeTitle">Confirm the deletion</string>
+    <string name="simple_errorServices">Cant connect to play services</string>
+
+
+    <string name="simple_nameApp">Cargo management application</string>
+    <string name="simple_author">Author : </string>
+
+
+    <string name="simple_editMessage">Are you sure you want to edit?</string>
+    <string name="simple_editTitle">Confirm the edit</string>
+
 
 
 </resources>

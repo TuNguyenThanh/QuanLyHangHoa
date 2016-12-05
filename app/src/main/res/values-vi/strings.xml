@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DoAnMobile</string>
+    <string name="simple_stu">Trường Đại học Công nghệ Sài Gòn</string>
+
     <string name="simple_login">Đăng nhập</string>
-    <string name="simple_listProduct">D.sách sản phẩm</string>
-    <string name="simple_catagory">Danh mục : </string>
+    <string name="simple_loginError">Tài khoản đăng nhập sai</string>
+    <string name="simple_listProduct">D.s sản phẩm</string>
+    <string name="simple_catagory">Loại :</string>
     <string name="simple_addProduct">Thêm sản phẩm</string>
-    <string name="simple_addCategory">Thêm thể loại</string>
+    <string name="simple_addCategory">Thể loại</string>
     <string name="simple_detailproduct">Chi tiết sản phẩm</string>
 
     <string name="simple_logout">Đăng xuất</string>
@@ -26,7 +29,7 @@
     <string name="simple_add">Thêm</string>
 
     <string name="simple_edit">Sửa</string>
-    <string name="simple_del">xoá</string>
+    <string name="simple_del">Xoá</string>
     <string name="simple_exit">Thoát</string>
 
     <string name="simple_idCategory">Mã thể loại</string>
@@ -38,5 +41,19 @@
     <string name="simple_messDelSuccess">Xóa thành công</string>
     <string name="simple_messEditSuccess">Sửa thành công</string>
     <string name="simple_messErrorChoose">Chọn thể loại cần xoá</string>
+
+    <string name="simple_alertChooseImage">Vui lòng chọn hình ảnh</string>
+    <string name="simple_chooseImage">Chọn hình ảnh</string>
+    <string name="simple_photo">Hình chụp</string>
+    <string name="simple_camera">Máy ảnh</string>
+    <string name="simple_removeMessage">Bạn có chắc chắn muốn xóa không?</string>
+    <string name="simple_removeTitle">Xác nhận xóa</string>
+    <string name="simple_errorServices">Không thể kết nối với dịch vụ</string>
+
+    <string name="simple_nameApp">Ứng dụng quản lý hàng hoá</string>
+    <string name="simple_author">Tác giả : </string>
+
+    <string name="simple_editMessage">Bạn có chắc chắn muốn sửa không?</string>
+    <string name="simple_editTitle">Xác nhận chỉnh sửa</string>
 
 </resources>

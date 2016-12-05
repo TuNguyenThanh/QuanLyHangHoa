@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:gravity="center_horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -20,8 +19,8 @@
             android:paddingTop="@dimen/activity_vertical_margin">
 
             <ImageView
-                android:id="@+id/imgEditProduct"
-                android:src="@drawable/cocacola"
+                android:id="@+id/imgEditProductFM"
+                android:src="@drawable/hinh"
                 android:layout_width="120dp"
                 android:layout_height="150dp" />
 
@@ -31,7 +30,7 @@
                 android:text="ma san pham"
                 android:textAlignment="center"
                 android:textSize="27dp"
-                android:id="@+id/txtEditId"
+                android:id="@+id/txtEditIdFM"
                 android:textStyle="bold"/>
 
             <LinearLayout
@@ -48,7 +47,7 @@
                     android:text="@string/simple_nameProduct"/>
 
                 <EditText
-                    android:id="@+id/edtEditName"
+                    android:id="@+id/edtEditNameFM"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -68,7 +67,7 @@
                     android:text="@string/simple_costProduct"/>
 
                 <EditText
-                    android:id="@+id/edtEditPrice"
+                    android:id="@+id/edtEditPriceFM"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -87,7 +86,7 @@
                     android:text="@string/simple_volumetric"/>
 
                 <EditText
-                    android:id="@+id/edtEditVolumetric"
+                    android:id="@+id/edtEditVolumetricFM"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -106,7 +105,7 @@
                     android:text="@string/simple_production"/>
 
                 <EditText
-                    android:id="@+id/edtEditProduction"
+                    android:id="@+id/edtEditProductionFM"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -130,7 +129,7 @@
                 <Spinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/spinnerEditCategory" />
+                    android:id="@+id/spinnerEditCategoryFM" />
             </LinearLayout>
 
 
@@ -139,28 +138,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <Button
-                    android:id="@+id/btnEdit"
+                    android:id="@+id/btnEditFM"
                     android:text="@string/simple_edit"
                     android:layout_margin="20dp"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content" />
                 <Button
-                    android:id="@+id/btnDel"
+                    android:id="@+id/btnDelFM"
                     android:text="@string/simple_del"
                     android:layout_margin="20dp"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content" />
-                <Button
-                    android:id="@+id/btnExitEdit"
-                    android:text="@string/simple_exit"
-                    android:layout_margin="20dp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
+                <!--<Button-->
+                    <!--android:id="@+id/btnExitEditFM"-->
+                    <!--android:text="@string/simple_exit"-->
+                    <!--android:layout_margin="20dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content" />-->
 
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

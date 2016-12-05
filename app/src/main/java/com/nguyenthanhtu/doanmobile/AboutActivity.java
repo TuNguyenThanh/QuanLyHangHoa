@@ -29,12 +29,7 @@ public class AboutActivity extends AppCompatActivity implements OnMapReadyCallba
         super.onCreate(savedInstanceState);
 
         if (googleServiceAvailable()){
-            Toast.makeText(this,"good", Toast.LENGTH_LONG).show();
             setContentView(R.layout.activity_about);
-            //setTitle(this.getString(R.string.simple_about));
-
-            //getActionBar().setHomeButtonEnabled(true);
-
             initMap();
         }else {
             //No google map layout
@@ -57,7 +52,7 @@ public class AboutActivity extends AppCompatActivity implements OnMapReadyCallba
             Dialog dialog = api.getErrorDialog(AboutActivity.this, isAvailable, 0);
             dialog.show();
         }else{
-            Toast.makeText(AboutActivity.this,"Cant connect to play services", Toast.LENGTH_LONG).show();
+            Toast.makeText(AboutActivity.this,AboutActivity.this.getText(R.string.simple_errorServices), Toast.LENGTH_LONG).show();
         }
         return false;
     }
@@ -73,7 +68,7 @@ public class AboutActivity extends AppCompatActivity implements OnMapReadyCallba
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(ll, zoom);
         this.mgoogleMap.moveCamera(update);
 
-        MarkerOptions options = new MarkerOptions().title("Trường Đại học Công nghệ Sài Gòn").position(ll);
+        MarkerOptions options = new MarkerOptions().title((String) AboutActivity.this.getText(R.string.simple_stu)).position(ll);
         this.mgoogleMap.addMarker(options);
     }
 

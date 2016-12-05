@@ -1,6 +1,8 @@
 package com.nguyenthanhtu.doanmobile;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +66,9 @@ public class ProductAdapter extends BaseAdapter {
 
         // gán dữ liệu vào từng đối tượng trong item_listview.xml
         Product product = (Product) getItem(position);
-        imgProduct.setImageResource(product.getProductImage());
+
+        Bitmap bitmap = BitmapFactory.decodeByteArray(product.getProductImage(), 0, product.getProductImage().length);
+        imgProduct.setImageBitmap(bitmap);
         txtId.setText(product.getProductId());
         txtName.setText(product.getProductName());
         txtCategory.setText(product.getProductCategory().getCategoryName());

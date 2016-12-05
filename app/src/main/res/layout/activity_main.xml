@@ -5,12 +5,19 @@
     android:layout_height="match_parent"
     tools:context="com.nguyenthanhtu.doanmobile.MainActivity">
 
-    <ListView
-        android:id="@+id/lvProduct"
-        android:layout_width="fill_parent"
+    <!--<ListView-->
+        <!--android:id="@+id/lvProduct"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:background="#ffe8e8e8"-->
+        <!--android:divider="#ffe8e8e8"-->
+        <!--android:dividerHeight="0dp" />-->
+
+    <fragment
+        android:id="@+id/frgListView"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:background="#ffe8e8e8"
-        android:divider="#ffe8e8e8"
-        android:dividerHeight="0dp" />
+        android:name="com.nguyenthanhtu.doanmobile.ListviewFragment"
+        tools:layout="@layout/fragment_listview"/>
 </RelativeLayout>

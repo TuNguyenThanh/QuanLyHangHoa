@@ -12,9 +12,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,9 +34,9 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 /**
- * Created by thanhtu on 10/12/16.
+ * Created by thanhtu on 11/2/16.
  */
-public class DetailProductActivity extends AppCompatActivity {
+public class DetailFragment extends Fragment {
     final String DATABASE_NAME = "qlhh.sqlite";
     final int RESQUEST_TAKE_PHOTO = 123;
     final int RESQUEST_CHOOSE_PHOTO = 321;
@@ -43,25 +45,35 @@ public class DetailProductActivity extends AppCompatActivity {
     TextView txtIdProduct;
     EditText edtName, edtPrice, edtVolumetric, edtProduction;
     Spinner spinnerEditCategory;
-    Button btnEdit, btnDel, btnExitEdit;
+    Button btnEdit, btnDel;
     Product product;
+    View fragment;
     private ArrayAdapter<Category> adapterCategory;
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_product);
-
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        fragment = inflater.inflate(R.layout.fragment_detail, container, true);
         addControls();
         addEvents();
-        getData();
+        if (Data.listDataProduct.size() != 0){
+            getData((Product)Data.listDataProduct.get(0));
+        }else{
+            imgProduct.setImageResource(R.drawable.hinh);
+            txtIdProduct.setText("");
+            edtPrice.setText("");
+            edtName.setText("");
+            edtVolumetric.setText("");
+            edtProduction.setText("");
+        }
+        return fragment;
     }
 
-    private void getData() {
-        if (getIntent().getExtras() != null) {
-            product = (Product) getIntent().getSerializableExtra("EDIT");
+    public void getData(Product pro) {
+        if (pro != null) {
+            product = pro;
 
-            SQLiteDatabase database = Database.initDatabase(this,DATABASE_NAME);
+            SQLiteDatabase database = Database.initDatabase(getActivity(),DATABASE_NAME);
             Cursor cursor = database.rawQuery("SELECT * FROM Product Where idProduct = ?",new String[] {product.getProductId() + ""});
             cursor.moveToFirst();
             String id   = cursor.getString(0);
@@ -112,32 +124,31 @@ public class DetailProductActivity extends AppCompatActivity {
         contentValues.put("production",production);
         contentValues.put("idCategory",category.getCategoryId());
 
-        SQLiteDatabase database = Database.initDatabase(DetailProductActivity.this, DATABASE_NAME);
+        SQLiteDatabase database = Database.initDatabase(getActivity(), DATABASE_NAME);
         database.update("Product",contentValues,"idProduct = ?",new String[] {id + ""} );
 
         Product productEdit = new Product(id,name,image,category,price,volumetric,production);
 
-        Intent intent = new Intent(DetailProductActivity.this, MainActivity.class);
-        intent.putExtra("EDIT", productEdit);
-        setResult(200, intent);
-        finish();
+        ListviewFragment listviewFragment = (ListviewFragment) getFragmentManager().findFragmentById(R.id.frgListView);
+        listviewFragment.editProduct(productEdit);
     }
 
     private void addEvents() {
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder  alert = new AlertDialog.Builder(DetailProductActivity.this);
+
+                AlertDialog.Builder  alert = new AlertDialog.Builder(getActivity());
                 alert.setIcon(android.R.drawable.ic_menu_edit);
-                alert.setTitle(DetailProductActivity.this.getText(R.string.simple_editTitle));
-                alert.setMessage(DetailProductActivity.this.getText(R.string.simple_editMessage));
-                alert.setPositiveButton(DetailProductActivity.this.getText(R.string.simple_yes), new DialogInterface.OnClickListener() {
+                alert.setTitle(getActivity().getText(R.string.simple_editTitle));
+                alert.setMessage(getActivity().getText(R.string.simple_editMessage));
+                alert.setPositiveButton(getActivity().getText(R.string.simple_yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         editProduct();
                     }
                 });
-                alert.setNegativeButton(DetailProductActivity.this.getText(R.string.simple_no), new DialogInterface.OnClickListener() {
+                alert.setNegativeButton(getActivity().getText(R.string.simple_no), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -151,18 +162,17 @@ public class DetailProductActivity extends AppCompatActivity {
         btnDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder  alert = new AlertDialog.Builder(DetailProductActivity.this);
+                AlertDialog.Builder  alert = new AlertDialog.Builder(getActivity());
                 alert.setIcon(android.R.drawable.ic_delete);
-                alert.setTitle(DetailProductActivity.this.getText(R.string.simple_removeTitle));
-                alert.setMessage(DetailProductActivity.this.getText(R.string.simple_removeMessage));
-                alert.setPositiveButton(DetailProductActivity.this.getText(R.string.simple_yes), new DialogInterface.OnClickListener() {
+                alert.setTitle(getActivity().getText(R.string.simple_removeTitle));
+                alert.setMessage(getActivity().getText(R.string.simple_removeMessage));
+                alert.setPositiveButton(getActivity().getText(R.string.simple_yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //yes xoa
                         deleteProduct(product.getProductId());
                     }
                 });
-                alert.setNegativeButton(DetailProductActivity.this.getText(R.string.simple_no), new DialogInterface.OnClickListener() {
+                alert.setNegativeButton(getActivity().getText(R.string.simple_no), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -173,20 +183,13 @@ public class DetailProductActivity extends AppCompatActivity {
             }
         });
 
-        btnExitEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         imgProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CharSequence image[] = new CharSequence[] {DetailProductActivity.this.getText(R.string.simple_photo),
-                        DetailProductActivity.this.getText(R.string.simple_camera)};
-                AlertDialog.Builder builder = new AlertDialog.Builder(DetailProductActivity.this);
-                builder.setTitle(DetailProductActivity.this.getText(R.string.simple_chooseImage));
+                CharSequence image[] = new CharSequence[] {getActivity().getText(R.string.simple_photo),
+                        getActivity().getText(R.string.simple_camera)};
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(getActivity().getText(R.string.simple_chooseImage));
                 builder.setItems(image, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -202,34 +205,37 @@ public class DetailProductActivity extends AppCompatActivity {
         });
     }
 
-    private void deleteProduct(String idProduct) {
-        SQLiteDatabase database = Database.initDatabase(this,DATABASE_NAME);
-        database.delete("Product","idProduct = ?", new String[] {idProduct + ""});
-
-        Intent intent = new Intent(DetailProductActivity.this, MainActivity.class);
-        intent.putExtra("DEL", product.getProductId());
-        setResult(300, intent);
-        finish();
-    }
-
     private void addControls() {
-        imgProduct   = (ImageView) findViewById(R.id.imgEditProduct);
-        txtIdProduct = (TextView) findViewById(R.id.txtEditId);
-        edtPrice = (EditText) findViewById(R.id.edtEditPrice);
-        edtName = (EditText) findViewById(R.id.edtEditName);
-        edtVolumetric = (EditText) findViewById(R.id.edtEditVolumetric);
-        edtProduction = (EditText) findViewById(R.id.edtEditProduction);
-        spinnerEditCategory = (Spinner) findViewById(R.id.spinnerEditCategory);
+        imgProduct   = (ImageView) fragment.findViewById(R.id.imgEditProductFM);
+        txtIdProduct = (TextView) fragment.findViewById(R.id.txtEditIdFM);
+        edtPrice = (EditText) fragment.findViewById(R.id.edtEditPriceFM);
+        edtName = (EditText) fragment.findViewById(R.id.edtEditNameFM);
+        edtVolumetric = (EditText) fragment.findViewById(R.id.edtEditVolumetricFM);
+        edtProduction = (EditText) fragment.findViewById(R.id.edtEditProductionFM);
+        spinnerEditCategory = (Spinner) fragment.findViewById(R.id.spinnerEditCategoryFM);
 
-        btnDel = (Button) findViewById(R.id.btnDel);
-        btnEdit = (Button) findViewById(R.id.btnEdit);
-        btnExitEdit = (Button) findViewById(R.id.btnExitEdit);
+        btnDel = (Button) fragment.findViewById(R.id.btnDelFM);
+        btnEdit = (Button) fragment.findViewById(R.id.btnEditFM);
 
-        adapterCategory = new ArrayAdapter<Category>(DetailProductActivity.this, android.R.layout.simple_list_item_1, Data.listDataCategory);
+        adapterCategory = new ArrayAdapter<Category>(getActivity(), android.R.layout.simple_list_item_1, Data.listDataCategory);
         adapterCategory.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spinnerEditCategory.setAdapter(adapterCategory);
     }
 
+    private void deleteProduct(String idProduct) {
+        SQLiteDatabase database = Database.initDatabase(getActivity(),DATABASE_NAME);
+        database.delete("Product","idProduct = ?", new String[] {idProduct + ""});
+
+        ListviewFragment listviewFragment = (ListviewFragment) getFragmentManager().findFragmentById(R.id.frgListView);
+        listviewFragment.delProduct(idProduct);
+
+        imgProduct.setImageResource(R.drawable.hinh);
+        txtIdProduct.setText("");
+        edtPrice.setText("");
+        edtName.setText("");
+        edtVolumetric.setText("");
+        edtProduction.setText("");
+    }
 
     public byte[] convertImageViewToByte(ImageView img){
         BitmapDrawable drawable = (BitmapDrawable) img.getDrawable();
@@ -253,14 +259,14 @@ public class DetailProductActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK){
+        if (resultCode == getActivity().RESULT_OK){
             if (requestCode == RESQUEST_CHOOSE_PHOTO){
                 try {
                     Uri imageUri = data.getData();
-                    InputStream inputStream = getContentResolver().openInputStream(imageUri);
+                    InputStream inputStream = getActivity().getContentResolver().openInputStream(imageUri);
                     Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                     imgProduct.setImageBitmap(bitmap);
                 } catch (FileNotFoundException e) {
@@ -272,4 +278,6 @@ public class DetailProductActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }
